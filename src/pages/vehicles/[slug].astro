@@ -1,0 +1,229 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+interface VehicleContent {
+	title: string;
+	tagline?: string;
+	oneOf?: string;
+	heroImage?: string;
+	sections: Array<{ heading: string; body: string[]; image?: string; }>
+	specs?: Array<{ label: string; value: string }>
+	cta?: { heading: string; body?: string; buttonText?: string }
+}
+
+const { slug } = Astro.params as { slug: string };
+
+const library: Record<string, VehicleContent> = {
+	"defender-works-v8-islay-edition": {
+		title: "Classic Defender Works V8 Islay Edition",
+		tagline: "A homage to Hebridean heritage",
+		oneOf: "One of 30",
+		heroImage: "/images/2012-lr-trophy.jpg",
+		sections: [
+			{
+				heading: "A Homage to Hebridean Heritage",
+				body: [
+					"Inspired by the 1965 Series IIa driven by Spencer Wilks on the Isle of Islay, this special edition echoes the birthplace of the Land Rover name.",
+				],
+				image: "/images/rover-hero-image.png"
+			},
+			{
+				heading: "Exclusively Yours",
+				body: [
+					"Limited to 30 meticulously restored examples, available as 90 and 110 wheelbases, each sourced and rebuilt by marque specialists.",
+				],
+				image: "/images/experience.jpg"
+			},
+			{
+				heading: "Shades of Origins",
+				body: [
+					"Finished in Heritage Grey with Limestone wheels, complemented by heritage badging and bespoke graphic details.",
+				],
+				image: "/images/2012-lr-trophy.jpg"
+			},
+			{
+				heading: "Every Stitch a Story",
+				body: [
+					"Cabin details reference the island’s landscape with tactile materials and craft-forward finishes.",
+				],
+				image: "/images/rover-hero-image.png"
+			},
+			{
+				heading: "Distilled Details",
+				body: [
+					"Signature interior elements nod to Islay’s whisky heritage with thoughtfully placed wood and metal accents.",
+				],
+				image: "/images/experience.jpg"
+			},
+			{
+				heading: "Ready to Take on Today",
+				body: [
+					"5.0‑litre V8 with eight‑speed automatic, upgraded brakes, suspension and handling kit for confident, modern driveability.",
+				],
+				image: "/images/2012-lr-trophy.jpg"
+			}
+		],
+		specs: [
+			{ label: "Engine", value: "5.0L V8 petrol" },
+			{ label: "Power", value: "405 hp" },
+			{ label: "Torque", value: "515 Nm" },
+			{ label: "Transmission", value: "8‑speed automatic" },
+			{ label: "Wheels", value: "16\" steel, mud‑terrain tyres" }
+		],
+		cta: { heading: "Build your own Classic Defender V8", body: "Interested in creating something inspired by our heritage or uniquely yours?", buttonText: "Enquire" }
+	},
+	"grizzly-torque": {
+		title: "1957 Land Rover Series I 'The Grizzly Torque'",
+		tagline: "Two Canadians, 19 countries, one extraordinary Series I",
+		oneOf: undefined,
+		heroImage: "/images/griz1.png",
+		sections: [
+			{
+				heading: "Origins of an Epic Journey",
+				body: [
+					"In the 1950s, Canadian naturalists Bristol Foster and Robert Bateman planned a 14‑month, round‑the‑world expedition. As Foster put it, “Of course, it had to be a Land Rover,” and a custom 1957 Series I was delivered at Solihull.",
+				],
+				image: "/images/griz1.png"
+			},
+			{
+				heading: "Across 19 Countries",
+				body: [
+					"Over 60,000 km through Asia, Africa, Australia and Europe, they painted, filmed and documented wildlife and cultures—turning the body of the Rover into a rolling canvas.",
+				],
+				image: "/images/griz3.png"
+			},
+			{
+				heading: "Pilchers Coachbuilt Details",
+				body: [
+					"Coachbuilder Pilchers outfitted the truck with green leather upholstery, an observation hatch, twin bunks, external sun visor, capstan winch and crank windows—luxury for life in the field.",
+				],
+				image: "/images/griz5.png"
+			},
+			{
+				heading: "Resilience on the Road",
+				body: [
+					"A crash‑avoidance incident in India dented the roof, but passersby pushed the Land Rover upright and it drove on—an enduring proof of its toughness.",
+				],
+				image: "/images/griz3.png"
+			},
+			{
+				heading: "Lost, Found, Restored",
+				body: [
+					"Rediscovered in British Columbia decades later, the vehicle was restored by Alan Simpson with meticulous attention—reportedly a two‑year effort costing nearly $300,000—then toured for Land Rover’s 70th anniversary.",
+				],
+				image: "/images/griz6.png"
+			},
+			{
+				heading: "A Living Legacy",
+				body: [
+					"The story continues in Alison Reid’s documentary project The Art of Adventure, with Foster’s 16mm footage and Bateman’s art capturing an era of exploration.",
+				],
+				image: "/images/griz2.png"
+			}
+		],
+		specs: [
+			{ label: "Chassis", value: "1957 Land Rover Series I (Pilchers coachbuilt)" },
+			{ label: "Powertrain", value: "2.0L petrol (period‑correct), 4WD" },
+			{ label: "Range", value: "60,000 km expedition mileage" }
+		],
+		cta: { heading: "Explore the Grizzly Torque", body: "A symbol of adventure and conservation from a golden age of overland travel.", buttonText: "Learn more" }
+	},
+};
+
+export function getStaticPaths() {
+	return [
+		{ params: { slug: "defender-works-v8-islay-edition" } },
+		{ params: { slug: "grizzly-torque" } }
+	];
+}
+
+const vehicle: VehicleContent = library[slug] ?? {
+	title: slug.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase()),
+	tagline: "Special edition",
+	oneOf: undefined,
+	heroImage: "/images/2012-lr-trophy.jpg",
+	sections: [
+		{ heading: "Overview", body: ["Vehicle overview goes here."], image: "/images/2012-lr-trophy.jpg" },
+	],
+	specs: [],
+	cta: { heading: "Get in touch", buttonText: "Enquire" }
+};
+---
+
+<Layout title={vehicle.title} description={vehicle.tagline || vehicle.title}>
+	<!-- Hero -->
+	<section class="relative">
+		<div class="relative h-[50vh] sm:h-[60vh] lg:h-[70vh]">
+			<img src={vehicle.heroImage} alt={vehicle.title} class="absolute inset-0 h-full w-full object-cover" />
+			<div class="absolute inset-0 bg-black/35"></div>
+			<div class="relative z-10 h-full">
+				<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-full flex items-end pb-10">
+					<div class="bg-white/75 backdrop-blur-sm text-gray-900 p-6 sm:p-8 max-w-xl">
+						<h1 class="lr-hero-title">{vehicle.title}</h1>
+						{vehicle.oneOf && <p class="lr-hero-subtitle">{vehicle.oneOf}</p>}
+						{vehicle.tagline && <p class="mt-3 lr-body-copy">{vehicle.tagline}</p>}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Sections (alternate image/text) -->
+	<section class="vehicle-sections py-10 sm:py-16">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-14">
+			{vehicle.sections.map((s, idx) => (
+				<div class={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-start ${idx % 2 === 1 ? 'lg:[&>div:first-child]:order-2 lg:[&>img]:order-1' : ''}`}>
+					<div>
+						<h2 class="text-2xl font-semibold">{s.heading}</h2>
+						{s.body.map((p) => (<p class="mt-3 lr-body-copy text-gray-900">{p}</p>))}
+					</div>
+					{ s.image && <img src={s.image} alt={s.heading} class="w-full h-64 sm:h-80 object-cover rounded-lg" /> }
+				</div>
+			))}
+		</div>
+	</section>
+
+	<!-- Image gallery strip -->
+	<section class="py-8 bg-gray-50">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+				<img src="/images/experience.jpg" alt="gallery" class="h-28 w-full object-cover rounded" />
+				<img src="/images/rover-hero-image.png" alt="gallery" class="h-28 w-full object-cover rounded" />
+				<img src="/images/2012-lr-trophy.jpg" alt="gallery" class="h-28 w-full object-cover rounded" />
+				<img src="/images/experience.jpg" alt="gallery" class="h-28 w-full object-cover rounded" />
+				<img src="/images/rover-hero-image.png" alt="gallery" class="h-28 w-full object-cover rounded" />
+				<img src="/images/2012-lr-trophy.jpg" alt="gallery" class="h-28 w-full object-cover rounded" />
+			</div>
+		</div>
+	</section>
+
+	<!-- Specs -->
+	{vehicle.specs && vehicle.specs.length > 0 && (
+		<section class="py-10 sm:py-16 bg-gray-50">
+			<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<h2 class="text-2xl font-semibold">Key specifications</h2>
+				<div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+					{vehicle.specs.map((s) => (
+						<div class="rounded-xl border border-gray-200 p-6">
+							<p class="text-xs uppercase tracking-wide text-gray-700">{s.label}</p>
+							<p class="mt-1 text-gray-900">{s.value}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+	)}
+
+	<!-- CTA -->
+	{vehicle.cta && (
+		<section class="py-10 sm:py-16">
+			<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+				<h2 class="text-2xl font-semibold">{vehicle.cta.heading}</h2>
+				{vehicle.cta.body && <p class="mt-3 lr-contact-copy">{vehicle.cta.body}</p>}
+				<div class="mt-6">
+					<a href="/#contact" class="btn-dark btn-dark-lg">{vehicle.cta.buttonText || 'Get In Touch'}</a>
+				</div>
+			</div>
+		</section>
+	)}
+</Layout>

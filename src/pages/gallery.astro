@@ -1,0 +1,129 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const vehicles = [
+	{ id: 1, title: "Defender Classic", brand: "Land Rover", model: "Defender 90", decade: "2010s", color: "White", location: "UK", mileage: "50 km", image: "/images/griz1.png", href: "/vehicles/grizzly-torque" },
+	{ id: 2, title: "Range Rover Heritage", brand: "Land Rover", model: "Range Rover", decade: "1990s", color: "Green", location: "UK", mileage: "93 mi" },
+	{ id: 3, title: "Series 1 Reborn", brand: "Land Rover", model: "Series 1", decade: "1950s", color: "Green", location: "UK", mileage: "69,912 mi" },
+	{ id: 4, title: "Series 2a Adventure", brand: "Land Rover", model: "Series 2a", decade: "1970s", color: "Blue", location: "UK", mileage: "93 mi" },
+	{ id: 5, title: "Series IIa Soft Top", brand: "Land Rover", model: "Series IIa", decade: "1970s", color: "White", location: "Germany", mileage: "300 km" },
+	{ id: 6, title: "Defender 90 Works V8", brand: "Land Rover", model: "Defender 90", decade: "2010s", color: "Black", location: "Germany", mileage: "1,490 km", image: "/images/griz2.png", href: "/vehicles/grizzly-torque" },
+	{ id: 7, title: "Jaguar E‑type Series 1", brand: "Jaguar", model: "E-type", decade: "1960s", color: "Red", location: "Germany", mileage: "404 km" },
+	{ id: 8, title: "Jaguar XK120", brand: "Jaguar", model: "XK120", decade: "1950s", color: "Silver", location: "Germany", mileage: "—" },
+	{ id: 9, title: "Jaguar F‑type V8", brand: "Jaguar", model: "F-type", decade: "2020s", color: "Black", location: "UK", mileage: "8,589 mi" },
+	{ id: 10, title: "Jaguar XK8 Convertible", brand: "Jaguar", model: "XK8", decade: "1990s", color: "Blue", location: "UK", mileage: "26,826 mi" },
+	{ id: 11, title: "Land Rover Works Trophy", brand: "Land Rover", model: "Defender 90", decade: "2010s", color: "White", location: "Germany", mileage: "50 km", image: "/images/griz3.png", href: "/vehicles/grizzly-torque" },
+	{ id: 12, title: "Jaguar XK140 DHC", brand: "Jaguar", model: "XK140", decade: "1950s", color: "Green", location: "Germany", mileage: "400 km" }
+];
+---
+
+<Layout title="Gallery" description="Vehicles and experiences gallery">
+	<section class="py-10 sm:py-16">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<h1 class="text-3xl font-bold tracking-tight">Vehicles</h1>
+
+			<!-- Filters -->
+			<div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end">
+				<div>
+					<label for="filter-brand" class="block text-xs uppercase tracking-wide text-gray-700">Brand</label>
+					<select id="filter-brand" class="mt-1 w-full border border-gray-300 bg-white px-3 py-2 text-sm select-field">
+						<option value="">Any</option>
+						<option>Land Rover</option>
+						<option>Jaguar</option>
+					</select>
+				</div>
+				<div>
+					<label for="filter-model" class="block text-xs uppercase tracking-wide text-gray-700">Model</label>
+					<select id="filter-model" class="mt-1 w-full border border-gray-300 bg-white px-3 py-2 text-sm select-field">
+						<option value="">Any</option>
+						<option>Defender 90</option>
+						<option>Range Rover</option>
+						<option>Series 1</option>
+						<option>Series 2a</option>
+						<option>Series IIa</option>
+						<option>E-type</option>
+						<option>F-type</option>
+						<option>XK120</option>
+						<option>XK140</option>
+						<option>XK8</option>
+					</select>
+				</div>
+				<div>
+					<label for="filter-decade" class="block text-xs uppercase tracking-wide text-gray-700">Decade</label>
+					<select id="filter-decade" class="mt-1 w-full border border-gray-300 bg-white px-3 py-2 text-sm select-field">
+						<option value="">Any</option>
+						<option>1950s</option>
+						<option>1960s</option>
+						<option>1970s</option>
+						<option>1980s</option>
+						<option>1990s</option>
+						<option>2000s</option>
+						<option>2010s</option>
+						<option>2020s</option>
+					</select>
+				</div>
+				<div>
+					<label for="filter-color" class="block text-xs uppercase tracking-wide text-gray-700">Color</label>
+					<select id="filter-color" class="mt-1 w-full border border-gray-300 bg-white px-3 py-2 text-sm select-field">
+						<option value="">Any</option>
+						<option>Black</option>
+						<option>White</option>
+						<option>Green</option>
+						<option>Blue</option>
+						<option>Red</option>
+						<option>Silver</option>
+					</select>
+				</div>
+				<div class="flex gap-3 lg:justify-end">
+					<button id="clear-filters" class="btn-lr w-full lg:w-auto">Clear Filters</button>
+				</div>
+			</div>
+
+			<!-- Grid -->
+			<div id="vehicles-grid" class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				{vehicles.map((v) => (
+					<div class="rounded-xl border border-gray-200 p-4" data-brand={v.brand} data-model={v.model} data-decade={v.decade} data-color={v.color}>
+						<img src={v.image || "/images/2012-lr-trophy.jpg"} alt="Gallery item" class="w-full h-48 object-cover rounded-lg" loading="lazy" decoding="async" />
+						<div class="mt-4 flex items-start justify-between gap-2">
+							<div>
+								<h3 class="text-base font-semibold tracking-wide">{v.title}</h3>
+								<p class="mt-1 text-xs text-gray-600">{v.location} • {v.mileage}</p>
+							</div>
+							<a href={v.href || "http://localhost:4321/vehicles/defender-works-v8-islay-edition"} class="btn-lr text-xs px-4 py-2">View</a>
+						</div>
+						<p class="mt-2 text-xs text-gray-600">{v.brand} • {v.model} • {v.decade} • {v.color}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<script>
+		const brandSel = document.getElementById('filter-brand');
+		const modelSel = document.getElementById('filter-model');
+		const decadeSel = document.getElementById('filter-decade');
+		const colorSel = document.getElementById('filter-color');
+		const clearBtn = document.getElementById('clear-filters');
+		const cards = () => Array.from(document.querySelectorAll('#vehicles-grid > div'));
+
+		function applyFilters() {
+			const b = brandSel.value;
+			const m = modelSel.value;
+			const d = decadeSel.value;
+			const c = colorSel.value;
+			cards().forEach(card => {
+				const match = (!b || card.dataset.brand === b) && (!m || card.dataset.model === m) && (!d || card.dataset.decade === d) && (!c || card.dataset.color === c);
+				card.classList.toggle('hidden', !match);
+			});
+		}
+
+		[brandSel, modelSel, decadeSel, colorSel].forEach(el => el.addEventListener('change', applyFilters));
+		clearBtn.addEventListener('click', () => {
+			brandSel.value = '';
+			modelSel.value = '';
+			decadeSel.value = '';
+			colorSel.value = '';
+			applyFilters();
+		});
+	</script>
+</Layout>

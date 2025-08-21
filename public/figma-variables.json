@@ -1,0 +1,83 @@
+{
+  "$schema": "https://www.figma.com/plugin-docs/typings/variables-schema.json",
+  "collections": [
+    {
+      "name": "Brand Colors",
+      "modes": ["default"],
+      "variables": [
+        { "name": "color.primary-1", "valuesByMode": { "default": "#0c121c" } },
+        { "name": "color.primary-2", "valuesByMode": { "default": "#4a4f54" } },
+        { "name": "color.primary-3", "valuesByMode": { "default": "#e9ecec" } },
+        { "name": "color.primary-4", "valuesByMode": { "default": "#f9f9f9" } },
+        {
+          "name": "color.accent.green",
+          "valuesByMode": { "default": "rgb(0,75,45)" }
+        },
+        {
+          "name": "color.accent.green.dark",
+          "valuesByMode": { "default": "rgb(0,62,37)" }
+        }
+      ]
+    },
+    {
+      "name": "Typography",
+      "modes": ["default"],
+      "variables": [
+        { "name": "font.primary", "valuesByMode": { "default": "Montserrat" } },
+        { "name": "font.secondary", "valuesByMode": { "default": "Avenir" } },
+        { "name": "type.body.size", "valuesByMode": { "default": "14px" } },
+        { "name": "type.body.line", "valuesByMode": { "default": "19px" } },
+        { "name": "type.bodyLg.size", "valuesByMode": { "default": "18px" } },
+        { "name": "type.bodyLg.line", "valuesByMode": { "default": "24px" } },
+        {
+          "name": "type.hero.size.mobile",
+          "valuesByMode": { "default": "26px" }
+        },
+        {
+          "name": "type.hero.line.mobile",
+          "valuesByMode": { "default": "26px" }
+        },
+        {
+          "name": "type.hero.size.desktop",
+          "valuesByMode": { "default": "38px" }
+        },
+        {
+          "name": "type.hero.line.desktop",
+          "valuesByMode": { "default": "38px" }
+        },
+        {
+          "name": "type.quote.size.mobile",
+          "valuesByMode": { "default": "30px" }
+        },
+        {
+          "name": "type.quote.line.mobile",
+          "valuesByMode": { "default": "36px" }
+        },
+        {
+          "name": "type.quote.size.desktop",
+          "valuesByMode": { "default": "50px" }
+        },
+        {
+          "name": "type.quote.line.desktop",
+          "valuesByMode": { "default": "59px" }
+        }
+      ]
+    },
+    {
+      "name": "Buttons",
+      "modes": ["default"],
+      "variables": [
+        {
+          "name": "button.outlineGreen.text",
+          "valuesByMode": { "default": "rgb(0,75,45)" }
+        },
+        {
+          "name": "button.outlineGreen.border",
+          "valuesByMode": { "default": "rgb(0,75,45)" }
+        },
+        { "name": "button.dark.bg", "valuesByMode": { "default": "#0c121c" } },
+        { "name": "button.dark.text", "valuesByMode": { "default": "#ffffff" } }
+      ]
+    }
+  ]
+}

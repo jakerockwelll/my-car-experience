@@ -1,0 +1,102 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Style Guide" description="Design tokens and components">
+	<section class="py-10 sm:py-16">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="flex items-center justify-between">
+				<h1 class="text-3xl font-bold tracking-tight">Style Guide</h1>
+				<button onclick="window.print()" class="btn-dark btn-dark-lg">Export PDF</button>
+			</div>
+
+			<h2 class="mt-10 text-2xl font-semibold">Colors</h2>
+			<div class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+				<div class="border p-4"><div class="h-12 w-full" style="background:#0c121c"></div><p class="mt-2 text-sm">primary-1 #0c121c</p></div>
+				<div class="border p-4"><div class="h-12 w-full" style="background:#4a4f54"></div><p class="mt-2 text-sm">primary-2 #4a4f54</p></div>
+				<div class="border p-4"><div class="h-12 w-full" style="background:#e9ecec"></div><p class="mt-2 text-sm">primary-3 #e9ecec</p></div>
+				<div class="border p-4"><div class="h-12 w-full" style="background:#f9f9f9"></div><p class="mt-2 text-sm">primary-4 #f9f9f9</p></div>
+				<div class="border p-4"><div class="h-12 w-full" style="background:rgb(0,75,45)"></div><p class="mt-2 text-sm">accent-green rgb(0,75,45)</p></div>
+				<div class="border p-4"><div class="h-12 w-full" style="background:rgb(0,62,37)"></div><p class="mt-2 text-sm">accent-green-dark rgb(0,62,37)</p></div>
+			</div>
+
+			<h2 class="mt-10 text-2xl font-semibold">Typography</h2>
+			<div class="mt-4 space-y-4">
+				<p class="lr-hero-title">Hero Title / Montserrat</p>
+				<p class="lr-hero-subtitle">Hero Subtitle / Montserrat</p>
+				<p class="lr-body-copy">Body Copy / Avenir — 14/19</p>
+				<p class="lr-contact-copy">Body Large / Montserrat — 18/24</p>
+				<p class="lr-quote">Large Quote / Montserrat — responsive</p>
+			</div>
+
+			<h2 class="mt-10 text-2xl font-semibold">Buttons</h2>
+			<div class="mt-4 flex flex-wrap gap-4">
+				<a class="btn-lr" href="#">Outline Green</a>
+				<a class="btn-dark" href="#">Dark</a>
+				<a class="btn-dark btn-dark-lg" href="#">Dark Large</a>
+			</div>
+
+			<h2 class="mt-10 text-2xl font-semibold">Cards</h2>
+			<div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				<div class="rounded-xl border border-gray-200 p-6">
+					<img src="/images/experience.jpg" alt="Sample" class="w-full h-40 object-cover rounded-lg mb-4" />
+					<h3 class="text-base font-semibold tracking-wide">Sample Experience</h3>
+					<p class="mt-2 text-gray-900 text-sm leading-snug font-bold">£ 160 (Up to 2 drivers) | 1 hour</p>
+					<p class="lr-body-copy">For guests who want to get behind the wheel…</p>
+					<a href="#" class="btn-lr text-xs px-4 py-2">Book now</a>
+				</div>
+			</div>
+
+			<h2 class="mt-10 text-2xl font-semibold">Spacing</h2>
+			<div class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+				<div class="sg-box p-4">
+					<div class="w-full" style="height:var(--space-1); background:#e5e7eb"></div>
+					<p class="mt-2 text-sm">space-1: 4px</p>
+				</div>
+				<div class="sg-box p-4">
+					<div class="w-full" style="height:var(--space-2); background:#e5e7eb"></div>
+					<p class="mt-2 text-sm">space-2: 8px</p>
+				</div>
+				<div class="sg-box p-4">
+					<div class="w-full" style="height:var(--space-3); background:#e5e7eb"></div>
+					<p class="mt-2 text-sm">space-3: 12px</p>
+				</div>
+				<div class="sg-box p-4">
+					<div class="w-full" style="height:var(--space-4); background:#e5e7eb"></div>
+					<p class="mt-2 text-sm">space-4: 16px</p>
+				</div>
+				<div class="sg-box p-4">
+					<div class="w-full" style="height:var(--space-5); background:#e5e7eb"></div>
+					<p class="mt-2 text-sm">space-5: 24px</p>
+				</div>
+				<div class="sg-box p-4">
+					<div class="w-full" style="height:var(--space-6); background:#e5e7eb"></div>
+					<p class="mt-2 text-sm">space-6: 32px</p>
+				</div>
+			</div>
+
+			<h2 class="mt-10 text-2xl font-semibold">Border Radius</h2>
+			<div class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+				<div class="sg-box p-4"><div class="h-12 w-full" style="background:#e9ecec; border-radius:var(--radius-none);"></div><p class="mt-2 text-sm">none 0px</p></div>
+				<div class="sg-box p-4"><div class="h-12 w-full" style="background:#e9ecec; border-radius:var(--radius-sm);"></div><p class="mt-2 text-sm">sm 4px</p></div>
+				<div class="sg-box p-4"><div class="h-12 w-full" style="background:#e9ecec; border-radius:var(--radius-md);"></div><p class="mt-2 text-sm">md 8px</p></div>
+				<div class="sg-box p-4"><div class="h-12 w-full" style="background:#e9ecec; border-radius:var(--radius-lg);"></div><p class="mt-2 text-sm">lg 12px</p></div>
+				<div class="sg-box p-4"><div class="h-12 w-full" style="background:#e9ecec; border-radius:var(--radius-xl);"></div><p class="mt-2 text-sm">xl 16px</p></div>
+			</div>
+
+			<h2 class="mt-10 text-2xl font-semibold">Iconography</h2>
+			<p class="mt-2 lr-body-copy">Use simple, stroke-based icons at 24px and 32px sizes. Maintain a 2px stroke weight, rounded joins, and consistent visual balance. Keep color to brand monochrome unless used as callouts.</p>
+			<div class="mt-4 flex items-center gap-6">
+				<div class="sg-chip">24px</div>
+				<div class="sg-chip">32px</div>
+				<div class="sg-chip">Stroke: 2px</div>
+				<div class="sg-chip">Color: #0c121c</div>
+			</div>
+
+			<h2 class="mt-10 text-2xl font-semibold">Downloads</h2>
+			<ul class="mt-4 list-disc pl-6">
+				<li><a class="underline" href="/figma-variables.json" download>Figma Variables (JSON)</a></li>
+			</ul>
+		</div>
+	</section>
+</Layout>
