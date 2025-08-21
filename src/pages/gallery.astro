@@ -22,8 +22,13 @@ const vehicles = [
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 			<h1 class="text-3xl font-bold tracking-tight">Vehicles</h1>
 
+			<!-- Mobile filters toggle -->
+			<div class="mt-4 sm:hidden">
+				<button id="toggle-filters" class="btn-lr w-full">Show Filters</button>
+			</div>
+
 			<!-- Filters -->
-			<div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end">
+			<div id="filters" class="mt-6 hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-3 gap-y-4 sm:gap-y-3 items-end">
 				<div>
 					<label for="filter-brand" class="block text-xs uppercase tracking-wide text-gray-700">Brand</label>
 					<select id="filter-brand" class="mt-1 w-full border border-gray-300 bg-white px-3 py-2 text-sm select-field">
@@ -99,6 +104,14 @@ const vehicles = [
 	</section>
 
 	<script>
+		const filtersWrap = document.getElementById('filters') as HTMLElement | null;
+		const toggleFiltersBtn = document.getElementById('toggle-filters') as HTMLButtonElement | null;
+		toggleFiltersBtn?.addEventListener('click', () => {
+			if (!filtersWrap || !toggleFiltersBtn) return;
+			const opening = filtersWrap.classList.contains('hidden');
+			filtersWrap.classList.toggle('hidden');
+			toggleFiltersBtn.textContent = opening ? 'Hide Filters' : 'Show Filters';
+		});
 		const brandSel = document.getElementById('filter-brand') as HTMLSelectElement | null;
 		const modelSel = document.getElementById('filter-model') as HTMLSelectElement | null;
 		const decadeSel = document.getElementById('filter-decade') as HTMLSelectElement | null;

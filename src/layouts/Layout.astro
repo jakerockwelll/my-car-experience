@@ -34,15 +34,28 @@ const { title = "Car Experience", description = "Premium driving experiences wit
 				<a href="/" class="flex items-center h-12">
 					<img src="/images/landrover-logo.jpg" alt="Land Rover logo" class="h-10 w-auto" />
 				</a>
+				<button id="mobile-menu-toggle" aria-controls="mobile-nav" aria-expanded="false" class="sm:hidden inline-flex items-center justify-center h-9 px-3 text-xs uppercase tracking-wide border border-gray-200 rounded-none">Menu</button>
 				<nav class="hidden sm:flex items-center gap-5 text-xs">
 					<a href="/models" class="hover:text-[#004b2d] uppercase tracking-wide">Models</a>
 					<a href="/gallery" class="hover:text-[#004b2d] uppercase tracking-wide">Gallery</a>
+					<a href="/vehicles/grizzly-torque" class="hover:text-[#004b2d] uppercase tracking-wide">Car Page</a>
 					<a href="/#experiences" class="hover:text-[#004b2d] uppercase tracking-wide">Experiences</a>
 					<a href="/#factory" class="hover:text-[#004b2d] uppercase tracking-wide">Factory Tours</a>
 					<a href="/#contact" class="hover:text-[#004b2d] uppercase tracking-wide">Contact</a>
 					<a href="/#booking" class="inline-flex items-center bg-[#004b2d] text-white uppercase tracking-wide text-[11px] px-4 py-2 rounded-none hover:bg-[#003e25]">Book Now</a>
 				</nav>
 			</div>
+			<nav id="mobile-nav" class="sm:hidden hidden border-t border-gray-200 bg-white">
+				<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex flex-col gap-3 text-xs">
+					<a href="/models" class="uppercase tracking-wide">Models</a>
+					<a href="/gallery" class="uppercase tracking-wide">Gallery</a>
+					<a href="/vehicles/grizzly-torque" class="uppercase tracking-wide">Car Page</a>
+					<a href="/#experiences" class="uppercase tracking-wide">Experiences</a>
+					<a href="/#factory" class="uppercase tracking-wide">Factory Tours</a>
+					<a href="/#contact" class="uppercase tracking-wide">Contact</a>
+					<a href="/#booking" class="inline-flex items-center justify-center bg-[#004b2d] text-white uppercase tracking-wide text-[11px] px-4 py-2 rounded-none w-full">Book Now</a>
+				</div>
+			</nav>
 		</header>
 		<main>
 			<slot />
@@ -53,5 +66,15 @@ const { title = "Car Experience", description = "Premium driving experiences wit
 				<p>Inspired by the structure of <a class="underline hover:text-gray-900" href="https://experience.landrover.co.uk/solihull/overview.html" rel="noopener noreferrer" target="_blank">Land Rover Experience Solihull</a>.</p>
 			</div>
 		</footer>
+	<script>
+		const mobileBtn = document.getElementById('mobile-menu-toggle') as HTMLButtonElement | null;
+		const mobileNav = document.getElementById('mobile-nav') as HTMLElement | null;
+		mobileBtn?.addEventListener('click', () => {
+			if (!mobileNav) return;
+			const willOpen = mobileNav.classList.contains('hidden');
+			mobileNav.classList.toggle('hidden');
+			mobileBtn.setAttribute('aria-expanded', String(willOpen));
+		});
+	</script>
 	</body>
 </html>
