@@ -89,7 +89,7 @@ const vehicles = [
 								<h3 class="text-base font-semibold tracking-wide">{v.title}</h3>
 								<p class="mt-1 text-xs text-gray-600">{v.location} • {v.mileage}</p>
 							</div>
-							<a href={v.href || "http://localhost:4321/vehicles/defender-works-v8-islay-edition"} class="btn-lr text-xs px-4 py-2">View</a>
+							<a href={v.href || "/vehicles/defender-works-v8-islay-edition"} class="btn-lr text-xs px-4 py-2">View</a>
 						</div>
 						<p class="mt-2 text-xs text-gray-600">{v.brand} • {v.model} • {v.decade} • {v.color}</p>
 					</div>
@@ -99,26 +99,28 @@ const vehicles = [
 	</section>
 
 	<script>
-		const brandSel = document.getElementById('filter-brand');
-		const modelSel = document.getElementById('filter-model');
-		const decadeSel = document.getElementById('filter-decade');
-		const colorSel = document.getElementById('filter-color');
-		const clearBtn = document.getElementById('clear-filters');
-		const cards = () => Array.from(document.querySelectorAll('#vehicles-grid > div'));
+		const brandSel = document.getElementById('filter-brand') as HTMLSelectElement | null;
+		const modelSel = document.getElementById('filter-model') as HTMLSelectElement | null;
+		const decadeSel = document.getElementById('filter-decade') as HTMLSelectElement | null;
+		const colorSel = document.getElementById('filter-color') as HTMLSelectElement | null;
+		const clearBtn = document.getElementById('clear-filters') as HTMLButtonElement | null;
+		const cards = (): HTMLElement[] => Array.from(document.querySelectorAll('#vehicles-grid > div')) as HTMLElement[];
 
 		function applyFilters() {
+			if (!brandSel || !modelSel || !decadeSel || !colorSel) return;
 			const b = brandSel.value;
 			const m = modelSel.value;
 			const d = decadeSel.value;
 			const c = colorSel.value;
-			cards().forEach(card => {
+			cards().forEach((card: HTMLElement) => {
 				const match = (!b || card.dataset.brand === b) && (!m || card.dataset.model === m) && (!d || card.dataset.decade === d) && (!c || card.dataset.color === c);
 				card.classList.toggle('hidden', !match);
 			});
 		}
 
-		[brandSel, modelSel, decadeSel, colorSel].forEach(el => el.addEventListener('change', applyFilters));
-		clearBtn.addEventListener('click', () => {
+		[brandSel, modelSel, decadeSel, colorSel].forEach((el) => el?.addEventListener('change', applyFilters));
+		clearBtn?.addEventListener('click', () => {
+			if (!brandSel || !modelSel || !decadeSel || !colorSel) return;
 			brandSel.value = '';
 			modelSel.value = '';
 			decadeSel.value = '';
